@@ -136,3 +136,11 @@ const data = await db.select().from(advocates);
 ```
 
 Now we have consistent, persisted data across the app and a proper `id` for the frontend to use as a key.
+
+## Feature: Error Handling for API Fetch
+### What I Did
+Wrapped the fetch request in a try/catch block inside useEffect to catch and log any API errors (like bad response or network failure).
+
+If an error occurs, it sets a user-friendly message to state and displays it in the UI above the search bar.
+
+Also clears the error if a retry succeeds on subsequent mounts.
