@@ -69,3 +69,12 @@ The "No advocates found" message was being rendered as a `<p>` tag directly insi
 
 ### What I Did  
 Replaced the `<p>` with a `<tr>` containing a single `<td>` that spans all columns (`colSpan={7}`) and centers the message.
+
+## Refactor: Create `AdvocatesTable` Component
+
+### What I Did  
+Moved the entire table into its own component: `AdvocatesTable.tsx`. Passed `filteredAdvocates` as a prop, and kept the render logic exactly the same. The goal here was just better structure and separation of concerns. The table had nothing to do with searching or fetching data, so it didn’t belong in the `Home` component.
+
+I also created a shared `Advocate` interface in `types/advocate.ts` to keep the type logic centralized.
+
+No visual or behavior changes — just moving logic into a more appropriate place.
