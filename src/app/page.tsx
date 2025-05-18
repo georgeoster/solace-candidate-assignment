@@ -6,6 +6,7 @@ export default function Home() {
   const [advocates, setAdvocates] = useState([]);
   const [filteredAdvocates, setFilteredAdvocates] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     console.log("fetching advocates...");
@@ -18,30 +19,40 @@ export default function Home() {
   }, []);
 
   const onChange = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-
-    console.log("filtering advocates...");
-    const filtered = advocates.filter((advocate) => {
-
-      const term = value.toLowerCase();
-
-      return (
-        advocate.firstName.toLowerCase().includes(term) ||
-        advocate.lastName.toLowerCase().includes(term) ||
-        advocate.city.toLowerCase().includes(term) ||
-        advocate.degree.toLowerCase().includes(term) ||
-        advocate.specialties.some((specialty) => specialty.toLowerCase().includes(term)) ||
-        advocate.yearsOfExperience.toString().includes(term)
-      );
-    });
-
-    setFilteredAdvocates(filtered);
+    setInputValue(e.target.value);
   };
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      const term = inputValue.toLowerCase();
+      setSearchTerm(term);
+
+      if (term === '') {
+        setFilteredAdvocates(advocates);
+        return;
+      }
+
+      const filtered = advocates.filter((advocate) => {
+        return (
+          advocate.firstName.toLowerCase().includes(term) ||
+          advocate.lastName.toLowerCase().includes(term) ||
+          advocate.city.toLowerCase().includes(term) ||
+          advocate.degree.toLowerCase().includes(term) ||
+          advocate.specialties.some((s) => s.toLowerCase().includes(term)) ||
+          advocate.yearsOfExperience.toString().includes(term)
+        );
+      });
+
+      setFilteredAdvocates(filtered);
+    }, 300);
+
+    return () => clearTimeout(handler);
+  }, [inputValue, advocates]);
 
   const onClick = () => {
     console.log(advocates);
     setFilteredAdvocates(advocates);
+    setSearchTerm('');
   };
 
   return (
@@ -54,7 +65,7 @@ export default function Home() {
         <p>
           Searching for: {searchTerm}
         </p>
-        <input style={{ border: "1px solid black" }} onChange={onChange} />
+        <input style={{ border: "1px solid black" }} value={inputValue} onChange={onChange} />
         <button onClick={onClick}>Reset Search</button>
       </div>
       <br />
@@ -89,6 +100,7 @@ export default function Home() {
               </tr>
             );
           })}
+          {filteredAdvocates.length === 0 && <p>No advocates found.</p>}
         </tbody>
       </table>
     </main>
