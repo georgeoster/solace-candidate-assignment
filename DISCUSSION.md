@@ -121,3 +121,18 @@ Formatted phone numbers to `(555) 555-5555`
 Row hover state for a touch of interactivity
 
 No changes to functionality.
+
+## Fix: API use DB
+
+### Problem
+API was returning seed data instead of querying the database.
+The `/api/advocates` route was returning a static array from `advocateData`, which meant records had no `id` or `createdAt` fields.
+
+### What I Did
+I updated the route to pull real records from the database:
+
+```ts
+const data = await db.select().from(advocates);
+```
+
+Now we have consistent, persisted data across the app and a proper `id` for the frontend to use as a key.

@@ -29,7 +29,7 @@ export default function AdvocatesTable({ advocates }: AdvocatesTableProps) {
         </thead>
         <tbody className="text-sm text-neutral-800 divide-y divide-neutral-200">
           {advocates.map((advocate) => (
-            <tr key={advocate.phoneNumber} className="even:bg-neutral-50 hover:bg-sky-50 transition-colors">
+            <tr key={advocate.id} className="even:bg-neutral-50 hover:bg-sky-50 transition-colors">
               <td className="px-4 py-2">{advocate.firstName}</td>
               <td className="px-4 py-2">{advocate.lastName}</td>
               <td className="px-4 py-2">{advocate.city}</td>
