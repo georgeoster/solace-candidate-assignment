@@ -23,3 +23,17 @@ I did this to improve readability and self-documentation..
 Terse variable names like `s` are acceptable for quick iteration, but meaningful names like `specialty` make it easier for teammates and reviewers to understand the code at a glance.
 
 ---
+## Fix: Direct DOM Mutation
+
+### Problem  
+There was a line in the `onChange` handler doing this:
+
+```ts
+document.getElementById("search-term").innerHTML = searchTerm;
+```
+That kind of direct DOM manipulation is outside of React’s rendering flow.
+
+### What I Did
+Replaced the manual DOM update with a useState variable (searchTerm) and let React handle rendering it. So now instead of targeting the element by ID and setting its innerHTML directly, I just store the value in state and render it where I need it.
+
+I also renamed the `filteredAdvocates` variable inside the `onChange` handler to just `filtered`. Having it named the same as the state setter (`setFilteredAdvocates`) felt confusing and made the code harder to follow.
