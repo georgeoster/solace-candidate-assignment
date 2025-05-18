@@ -37,3 +37,16 @@ That kind of direct DOM manipulation is outside of React’s rendering flow.
 Replaced the manual DOM update with a useState variable (searchTerm) and let React handle rendering it. So now instead of targeting the element by ID and setting its innerHTML directly, I just store the value in state and render it where I need it.
 
 I also renamed the `filteredAdvocates` variable inside the `onChange` handler to just `filtered`. Having it named the same as the state setter (`setFilteredAdvocates`) felt confusing and made the code harder to follow.
+
+## Fix: Search Functionality
+
+### Problem  
+`advocate.yearsOfExperience` was a number, and we were calling `.includes()` directly on it. Numbers don't have `.includes()`, so this was breaking the search.
+While fixing that, I also noticed the search was case-sensitive, which felt like a UX problem. For example, searching for "phd" wouldn't return "PhD" and that’s not great for a user experience.
+I also noticed the speciaties search wasn't working the way I as a user would expect it to.
+
+### What I Did  
+Converted `yearsOfExperience` to a string before calling `.includes()`.
+Converted all searchable fields (firstName, lastName, city, degree, specialties) to lowercase before comparing. This makes search case-insensitive, which is more intuitive for users.
+Used `.some()` for specialties instead of comparing the whole array. which makes the match logic more accurate and efficient.
+
