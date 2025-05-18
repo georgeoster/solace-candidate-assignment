@@ -100,7 +100,13 @@ export default function Home() {
               </tr>
             );
           })}
-          {filteredAdvocates.length === 0 && <p>No advocates found.</p>}
+          {filteredAdvocates.length === 0 && (
+            <tr>
+              <td colSpan={7} className="text-center py-4 text-neutral-500">
+                No advocates found.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </main>
