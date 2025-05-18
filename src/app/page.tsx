@@ -60,18 +60,14 @@ export default function Home() {
   };
 
   return (
-    <main style={{ margin: "24px" }}>
-      <h1>Solace Advocates</h1>
-      <br />
-      <br />
+    <main className="max-w-5xl mx-auto px-6 py-10 space-y-8">
+      <h1 className="text-3xl font-bold text-neutral-800">Solace Advocates</h1>
       <SearchBar
         inputValue={inputValue}
         searchTerm={searchTerm}
         onInputChange={handleSearchInputChange}
         onReset={handleSearchReset}
       />
-      <br />
-      <br />
       <AdvocatesTable advocates={filteredAdvocates} />
     </main>
   );
