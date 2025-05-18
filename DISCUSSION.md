@@ -144,3 +144,24 @@ Wrapped the fetch request in a try/catch block inside useEffect to catch and log
 If an error occurs, it sets a user-friendly message to state and displays it in the UI above the search bar.
 
 Also clears the error if a retry succeeds on subsequent mounts.
+
+## Final Thoughts
+With more time, I would have:
+
+### Pagination or infinite scroll
+Right now, we’re rendering every advocate at once. This works fine for a small dataset, but obviously doesn’t scale well. Server-side pagination with query parameters (?page=2&limit=50) would help with performance and UX.
+
+### Unit and Integration tests
+Especially for the search logic and table rendering. It would be helpful to cover edge cases as the app grows.
+
+### WCAG and accessibility
+ARIA labels, better focus states, keyboard navigation, and screen reader support.
+
+### Loading and empty states
+Right now we optimistically fetch and render, but a loading spinner or skeleton could improve UX while data is being fetched.
+
+### Extracted search logic into a reusable hook
+As the app grows, this would keep things clean and could potentially be reused elsewhere.
+
+### Backend filtering
+Ideally, filtering should be done at the database level for large datasets. Right now it's all client-side. A future step would be an endpoint like /api/advocates?search=term, with optimized DB queries.
