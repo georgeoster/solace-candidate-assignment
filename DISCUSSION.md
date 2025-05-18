@@ -109,3 +109,15 @@ Gave focus and hover indicators to the input and button.
 Moved the “Searching for:” text *below* the input instead of between the label and input — it felt visually out of place where it was before.
 
 No changes to functionality.
+
+## Style: Advocates Table
+
+### What I Did  
+Applied Tailwind styling to the table for visual clarity and usability.
+
+Full-width layout with scrollable overflow for smaller screens
+Zebra striping and row separation
+Formatted phone numbers to `(555) 555-5555`
+Row hover state for a touch of interactivity
+
+No changes to functionality.
