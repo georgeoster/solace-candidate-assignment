@@ -22,14 +22,17 @@ export default function Home() {
     setSearchTerm(value);
 
     console.log("filtering advocates...");
-    const filtered= advocates.filter((advocate) => {
+    const filtered = advocates.filter((advocate) => {
+
+      const term = value.toLowerCase();
+
       return (
-        advocate.firstName.includes(value) ||
-        advocate.lastName.includes(value) ||
-        advocate.city.includes(value) ||
-        advocate.degree.includes(value) ||
-        advocate.specialties.includes(value) ||
-        advocate.yearsOfExperience.includes(value)
+        advocate.firstName.toLowerCase().includes(term) ||
+        advocate.lastName.toLowerCase().includes(term) ||
+        advocate.city.toLowerCase().includes(term) ||
+        advocate.degree.toLowerCase().includes(term) ||
+        advocate.specialties.some((specialty) => specialty.toLowerCase().includes(term)) ||
+        advocate.yearsOfExperience.toString().includes(term)
       );
     });
 
