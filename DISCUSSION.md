@@ -50,3 +50,14 @@ Converted `yearsOfExperience` to a string before calling `.includes()`.
 Converted all searchable fields (firstName, lastName, city, degree, specialties) to lowercase before comparing. This makes search case-insensitive, which is more intuitive for users.
 Used `.some()` for specialties instead of comparing the whole array. which makes the match logic more accurate and efficient.
 
+## Fix: Search Debounce
+
+### Problem  
+The search was firing on every single keystroke, which felt a little jittery and unnecessary. 
+The filters were running for empty strings.
+There was no message being displayed when no advocates were found.
+
+### What I Did  
+Added a 300ms debounce.
+Made the filter logic skip `.filter()` entirely when the input is empty.
+Added a 'No advocates found' message. 
