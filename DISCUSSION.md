@@ -61,3 +61,11 @@ There was no message being displayed when no advocates were found.
 Added a 300ms debounce.
 Made the filter logic skip `.filter()` entirely when the input is empty.
 Added a 'No advocates found' message. 
+
+## Fix: No Advocates Found Message
+
+### Problem  
+The "No advocates found" message was being rendered as a `<p>` tag directly inside the `<tbody>`. 
+
+### What I Did  
+Replaced the `<p>` with a `<tr>` containing a single `<td>` that spans all columns (`colSpan={7}`) and centers the message.
