@@ -97,3 +97,15 @@ Centered layout and padding.
 Vertical spacing between sections.
 Clean, readable typographic hierarchy.
 Easier to maintain layout going forward
+
+## Style: Search Bar
+
+### What I Did  
+Styled the input and button with Tailwind.
+
+Added vertical spacing.  
+Used a label for accessibility.  
+Gave focus and hover indicators to the input and button.  
+Moved the “Searching for:” text *below* the input instead of between the label and input — it felt visually out of place where it was before.
+
+No changes to functionality.
