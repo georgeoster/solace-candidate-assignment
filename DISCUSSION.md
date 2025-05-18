@@ -87,3 +87,13 @@ Moved the search input, label, and reset button into their own component: `Searc
 Also renamed the handlers from `onChange` and `onClick` to `handleSearchInputChange` and `handleSearchReset`. The old names were too generic and started feeling ambiguous once they got passed down as props. More descriptive names make the code easier to follow when jumping between components.
 
 No visual or behavior changes.
+
+## Style: Page Layout
+
+### What I Did  
+Replaced all the `<br/>` tags and inline margin styling with Tailwind classes.
+
+Centered layout and padding.
+Vertical spacing between sections.
+Clean, readable typographic hierarchy.
+Easier to maintain layout going forward
