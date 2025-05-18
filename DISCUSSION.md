@@ -78,3 +78,12 @@ Moved the entire table into its own component: `AdvocatesTable.tsx`. Passed `fil
 I also created a shared `Advocate` interface in `types/advocate.ts` to keep the type logic centralized.
 
 No visual or behavior changes — just moving logic into a more appropriate place.
+
+## Refactor: Create `SearchBar` Component
+
+### What I Did  
+Moved the search input, label, and reset button into their own component: `SearchBar.tsx`. State management and filtering still live in the `Home` component. I wanted this SearchBar to be reusable and not have knowledge of what it was being used for.
+
+Also renamed the handlers from `onChange` and `onClick` to `handleSearchInputChange` and `handleSearchReset`. The old names were too generic and started feeling ambiguous once they got passed down as props. More descriptive names make the code easier to follow when jumping between components.
+
+No visual or behavior changes.

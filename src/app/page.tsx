@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Advocate } from "./types/advocate";
 import AdvocatesTable from "./components/AdvocatesTable";
+import SearchBar from "./components/SearchBar";
 
 export default function Home() {
   const [advocates, setAdvocates] = useState<Advocate[]>([]);
@@ -20,7 +21,7 @@ export default function Home() {
     });
   }, []);
 
-  const onChange = (e) => {
+  const handleSearchInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
@@ -51,10 +52,11 @@ export default function Home() {
     return () => clearTimeout(handler);
   }, [inputValue, advocates]);
 
-  const onClick = () => {
+  const handleSearchReset = () => {
     console.log(advocates);
     setFilteredAdvocates(advocates);
     setSearchTerm('');
+    setInputValue('');
   };
 
   return (
@@ -62,14 +64,12 @@ export default function Home() {
       <h1>Solace Advocates</h1>
       <br />
       <br />
-      <div>
-        <p>Search</p>
-        <p>
-          Searching for: {searchTerm}
-        </p>
-        <input style={{ border: "1px solid black" }} value={inputValue} onChange={onChange} />
-        <button onClick={onClick}>Reset Search</button>
-      </div>
+      <SearchBar
+        inputValue={inputValue}
+        searchTerm={searchTerm}
+        onInputChange={handleSearchInputChange}
+        onReset={handleSearchReset}
+      />
       <br />
       <br />
       <AdvocatesTable advocates={filteredAdvocates} />
